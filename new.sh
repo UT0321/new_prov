@@ -3,12 +3,23 @@
 # Check if Puppet can sync with the server
 echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and LSAPI..."
 
-# Puppet sync check
-if puppet agent --test >/dev/null 2>&1; then
+
+log_file="/tmp/puppet_sync.log"
+puppet agent --test > "$log_file" 2>&1
+
+# Check the log file for success or failure
+if grep -q "Applied catalog in" "$log_file"; then
     echo "Puppet sync successful"
 else
     echo "Puppet sync failed"
 fi
+
+# Puppet sync check
+#if puppet agent --test >/dev/null 2>&1; then
+#    echo "Puppet sync successful"
+#else
+ #   echo "Puppet sync failed"
+#fi
 
 # Zabbix check
 if command -v zabbix_agentd >/dev/null 2>&1; then
