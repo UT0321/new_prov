@@ -5,12 +5,7 @@ echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and
 
 
 
-# Check the log file for success or failure
-if grep -q "Applied catalog in" "$log_file"; then
-    echo "Puppet sync successful"
-else
-    echo "Puppet sync failed"
-fi
+puppet agent --test
 
 # Puppet sync check
 #if puppet agent --test >/dev/null 2>&1; then
