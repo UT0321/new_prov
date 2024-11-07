@@ -4,8 +4,14 @@
 echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and LSAPI..."
 
 
-
-puppet agent --test
+# Now show the output of the Puppet sync test
+if command -v puppet >/dev/null 2>&1; then
+    # Show full output of the Puppet agent test
+    echo "Running Puppet sync test..."
+    puppet agent --test
+else
+    echo "Puppet is NOT installed"
+fi
 
 # Puppet sync check
 #if puppet agent --test >/dev/null 2>&1; then
