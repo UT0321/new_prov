@@ -5,9 +5,6 @@ echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and
 
 
 
-log_file="/tmp/puppet_sync.log"
-puppet agent --test > "$log_file" 2>&1
-
 # Check the log file for success or failure
 if grep -q "Applied catalog in" "$log_file"; then
     echo "Puppet sync successful"
@@ -30,10 +27,10 @@ else
 fi
 
 # EasyApache check
-if command -v ea-apache24 >/dev/null 2>&1; then
-    echo "EasyApache is installed"
+if yum list installed | grep -q ea-apache24; then
+    echo "EasyApache 4 is installed"
 else
-    echo "EasyApache is NOT installed"
+    echo "EasyApache 4 is NOT installed"
 fi
 
 # cPanel License check
@@ -70,3 +67,6 @@ if command -v lsapi >/dev/null 2>&1; then
 else
     echo "LSAPI is NOT installed"
 fi
+
+
+puppet agent --test 
