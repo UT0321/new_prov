@@ -3,7 +3,6 @@
 # Check if Puppet can sync with the server
 echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and LSAPI..."
 
-
 # Now show the output of the Puppet sync test
 if command -v puppet >/dev/null 2>&1; then
     # Show full output of the Puppet agent test
@@ -12,13 +11,6 @@ if command -v puppet >/dev/null 2>&1; then
 else
     echo "Puppet is NOT installed"
 fi
-
-# Puppet sync check
-#if puppet agent --test >/dev/null 2>&1; then
-#    echo "Puppet sync successful"
-#else
- #   echo "Puppet sync failed"
-#fi
 
 # Zabbix check
 if command -v zabbix_agentd >/dev/null 2>&1; then
@@ -42,7 +34,7 @@ else
 fi
 
 # SSH check
-if command -v sshd >/dev/null 2>&1; then
+if command -v ssh >/dev/null 2>&1; then
     echo "SSH is installed"
 else
     echo "SSH is NOT installed"
@@ -68,6 +60,3 @@ if command -v lsapi >/dev/null 2>&1; then
 else
     echo "LSAPI is NOT installed"
 fi
-
-
-puppet agent --test 
