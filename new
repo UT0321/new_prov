@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Test Puppet
+echo "Testing Puppet agent..."
+sudo puppet agent --test
+
+# Test Zabbix
+echo "Checking Zabbix agent status..."
+sudo systemctl status zabbix-agent
+
+exit 0
