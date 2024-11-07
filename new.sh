@@ -4,6 +4,7 @@
 echo "Checking Puppet sync, Zabbix, EasyApache, cPanel License, SSH, CageFS, and LSAPI..."
 
 
+
 log_file="/tmp/puppet_sync.log"
 puppet agent --test > "$log_file" 2>&1
 
